@@ -1,0 +1,24 @@
+<div class="lg:hidden w-full" x-show="navbarOpen" x-transition:enter="transition ease-out duration-300"
+     x-transition:enter-start="opacity-0 transform -translate-y-2"
+     x-transition:enter-end="opacity-100 transform translate-y-0"
+     x-transition:leave="transition ease-in duration-300"
+     x-transition:leave-start="opacity-100 transform translate-y-0"
+     x-transition:leave-end="opacity-0 transform -translate-y-2">
+    <ul class="menu w-full bg-custom-color2 flex flex-col items-center py-4 ">
+        <li class="font-semibold text-color3 text-lg hover:text-color3 transition ease-in-out duration-300 mb-5 w-full text-center">
+            <a href="{% url 'index' %}">Home</a>
+        </li>
+        <li class="font-semibold text-color3 text-lg hover:text-color3 transition ease-in-out duration-300 mb-5 w-full text-center">
+            <a href="{% url 'about' %}">About</a>
+        </li>
+        <li class="font-semibold text-color3 text-lg hover:text-color3 transition ease-in-out duration-300 mb-5 w-full text-center">
+            <a href="{% url 'services' %}">Services</a>
+        </li>
+        <li class="font-semibold text-color3 text-lg hover:text-color3 transition ease-in-out duration-300 mb-5 w-full text-center">
+            <a href="{% url 'contact' %}">Contact</a>
+        </li>
+        <!-- <li class="font-semibold text-color3 text-lg hover:text-color3 transition ease-in-out duration-300 mb-5 w-full text-center">
+            <a href="{% url 'menu' %}">Menu</a>
+        </li> -->
+    </ul>
+</div>

@@ -1,0 +1,482 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
+
+
+/* Color Pallet */
+/* Color Theme Swatches in Hex */
+.TechCorp-1-hex { color: #303030; }
+.TechCorp-2-hex { color: #181818; }
+.TechCorp-3-hex { color: #F0C000; }
+.TechCorp-4-hex { color: #F0D800; }
+.TechCorp-5-hex { color: #FFFFFF; }
+
+.bg-custom-color1 {
+  background-color: #F0C000 !important;
+}
+
+.bg-custom-color2 {
+  background-color: #303030 !important;
+}
+
+.bg-custom-color3 {
+  background-color: #ffffff !important;
+}
+
+.bg-custom-color4 {
+  background-color: #181818 !important;
+}
+.bg-custom-color5 {
+  background-color: #F0D800 !important;
+}
+
+.text-color1 {
+  color: #F0C000 !important;
+}
+
+.text-color2 {
+  color: #303030 !important;
+}
+
+.text-color3 {
+  color: #ffffff !important;
+}
+
+.text-color4 {
+  color: #181818 !important;
+}
+
+.text-color5 {
+  color: #F0D800 !important;
+}
+
+.border-color1 {
+  border: 1px solid #303030;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #303030;
+}
+
+html,
+body {
+  font-family: "Syne", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  background-color: #303030;
+}
+
+.font2 {
+  font-family: "Syne", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 400;
+}
+
+
+/* FEATURE */
+.feature {
+  padding-top: 24rem;
+}
+
+/* REVIEW  */
+.review {
+  min-height: 24rem;
+  height: fit-content;
+}
+/* END REVIEW */
+/* NAV BAR  */
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav {
+  width: 100%;
+}
+
+a {
+  cursor: pointer;
+}
+
+.menu {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.menu li {
+  transition: all 0.3s ease-in-out;
+}
+
+.menu > li:hover > a {
+  color: #F0C000;
+}
+
+.menu > li:hover > a::before {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
+.menu > li a {
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 7px;
+  text-decoration: none;
+  position: relative;
+  height: 100%;
+}
+
+.menu > li > a::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  bottom: 3px;
+  left: 0px;
+  background-color: #F0C000;
+  transition: all 0.2s ease-in-out;
+  transform: scaleX(0);
+  visibility: hidden;
+}
+
+/* Responsive adjustments */
+@media (min-width: 1024px) {
+  .menu {
+    height: 70px;
+  }
+
+  .menu li {
+    display: inline-block;
+    width: 90px;
+  }
+
+  .submenu {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    background-color: #F0C000;
+    height: 0;
+    line-height: 40px;
+    box-sizing: border-box;
+    transition: height 0.3s ease-in-out;
+  }
+
+  .menu li:hover .submenu {
+    height: 85px;
+  }
+
+  .menu li .submenu a {
+    color: #fff;
+    opacity: 0;
+    font-size: 16px;
+    transition: opacity 0.25s;
+  }
+
+  .menu > li:hover .submenu a {
+    opacity: 1;
+  }
+
+  .menu > li .submenu a:hover {
+    background: rgb(0 0 0 / 20%);
+  }
+}
+
+/* NAV BAR END  */
+
+
+.container {
+  width: 100%;
+}
+
+/* Cookie banner */
+.z-60 {
+  z-index: 60;
+}
+
+.z-70 {
+  z-index: 70;
+}
+
+.h-fit-content{
+  height: fit-content;
+}
+
+.review-height {
+  height: 35rem;
+}
+
+.feature-img-height {
+  max-height: 25rem;
+  max-width: 25rem;
+}
+section {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden; /* Add this to prevent content overflow */
+}
+
+/* Add this to ensure content is visible within the section */
+section > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* DELETE BUTTON */
+/* btn-6 */
+
+
+/* <div>
+
+                <button class="btn-6">
+                  <span class="button-text"></span>
+                  <span class="animation">
+                    <span class="paper-wrapper">
+                      <span class="paper"></span>
+                    </span>
+                    <span class="shredded-wrapper">
+                      <span class="shredded"></span>
+                    </span>
+                    <span class="lid"></span>
+                    <span class="can">
+                      <span class="filler"></span>
+                    </span>
+                  </span>
+                </button> */
+/* .btn-6 {
+  position: absolute;
+  scale: 0.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px;
+  border: 2px solid #443d4f;
+  font-size: 19px;
+  color: #f9f9f9;
+  padding: 0 24px;
+  width: 146px;
+  height: 60px;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  background-color: #F9D342;
+}
+
+.btn-6 .button-text {
+  flex: 0 0 70px;
+}
+
+.btn-6 .button-text::before {
+  content: "Delete";
+}
+
+.btn-6 .animation {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  scale: 0.725;
+}
+
+.btn-6 .can {
+  overflow: hidden;
+  position: relative;
+  translate: 0 3px;
+  width: 20px;
+  height: 22px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: 2px solid #f9f9f9;
+}
+
+.btn-6 .lid {
+  position: absolute;
+  top: 17px;
+  left: 50%;
+  translate: -50% 0;
+  width: 24px;
+  height: 2px;
+  background: #f9f9f9;
+}
+
+@keyframes move {
+  75%,
+  100% {
+    translate: 0 88px;
+  }
+}
+
+.btn-6 .paper-wrapper,
+.btn-6 .shredded-wrapper {
+  overflow: hidden;
+  position: absolute;
+  display: flex;
+  top: -20px;
+  left: 50%;
+  margin-left: -5px;
+  width: 10px;
+  height: 64px;
+}
+
+.btn-6 .paper-wrapper {
+  height: 40px;
+}
+
+.btn-6 .shredded-wrapper {
+  top: 24px;
+  height: 20px;
+  justify-content: center;
+}
+
+.btn-6 .paper,
+.btn-6 .shredded {
+  display: block;
+  background: #f9f9f9;
+  height: 20px;
+}
+
+.btn-6 .paper {
+  width: 10px;
+}
+
+.btn-6 .shredded {
+  margin-top: -40px;
+  width: 2px;
+}
+
+.btn-6 .shredded::before,
+.btn-6 .shredded::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  width: inherit;
+  height: inherit;
+  background: inherit;
+}
+
+.btn-6 .shredded::before {
+  left: -4px;
+}
+
+.btn-6 .shredded::after {
+  right: -4px;
+}
+
+@keyframes fill {
+  0%,
+  20% {
+    translate: 0 0;
+  }
+  40%,
+  70% {
+    translate: 0 -50%;
+  }
+  90%,
+  100% {
+    translate: 0 -100%;
+  }
+}
+
+.btn-6 .filler {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -32px;
+  width: 64px;
+  height: 120%;
+  background: #f9f9f9;
+}
+
+.btn-6:hover {
+  background: #fd445e;
+  border-color: #fd445e;
+}
+
+.btn-6:hover :is(.paper, .shredded) {
+  animation: move 1s linear 2 both;
+}
+
+.btn-6:hover .filler {
+  animation: fill 2s both;
+} */
+
+@media (max-width: 767px) {
+  .carousel-control-prev {
+      left: 10px !important; /* Adjust this value as needed */
+  }
+  
+  .carousel-control-next {
+      right: 10px !important; /* Adjust this value as needed */
+  }
+  
+  #reviews-carousel .review-card {
+      padding-left: 40px; /* Increase left padding */
+      padding-right: 40px; /* Increase right padding */
+  }
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+
+  .menu-container {
+    max-width: 70vh !important;
+    padding-top: 99% !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
+.bg-none {
+  background-image: none;
+}

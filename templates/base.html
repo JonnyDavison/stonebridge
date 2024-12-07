@@ -1,0 +1,242 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="{{ home.google_site_verification }}" />
+    
+    <meta name="keywords"
+        content="{{ home.keywords }}">
+    <meta name="description"
+        content="{{ home.description }}">
+    <title>Stonebridge Farm | Rare Breeds are great feeds </title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ MEDIA_URL }}favicon.ico">
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.cdnfonts.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://kit.fontawesome.com">
+
+    <!-- CSS -->
+    <link href="https://fonts.cdnfonts.com/css/kiona-2" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/raleway-7" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"
+        defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js" defer></script>
+    <script src="https://kit.fontawesome.com/75b57bf907.js" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"
+        integrity="sha512-7x3zila4t2qNycrtZ31HO0NnJr8kg2VI67YLoRSyi9hGhRN66FHYWr7Axa9Y1J9tGYHVBPqIjSE1ogHrJTz51g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://unpkg.com/akar-icons-fonts" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="{% static 'js/cookie_consent.js' %}" defer></script>
+    <script src="{% static 'js/main.js' %}" defer></script>
+
+
+ <!-- Google Tag Manager -->
+<!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-M3XCXHF9');</script> -->
+    <!-- End Google Tag Manager -->
+
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZEFG1FNZ2T"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-ZEFG1FNZ2T');
+    </script> -->
+
+    {% block extra_css %}{% endblock %}
+    {% block extra_js %}{% endblock %}
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3XCXHF9"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="bg-custom-color2">
+        <div class="container max-w-screen-xl mx-auto px-4">
+            <nav class="relative flex flex-wrap lg:flex-nowrap justify-between items-center py-14 xl:relative z-10"
+                x-data="{navbarOpen:false}">
+                <div class="flex items-center justify-between lg:justify-start w-full lg:w-auto">
+                    {% if home.logo %}
+                    <a href="{% url 'index' %}" class="mr-auto lg:mr-0">
+                        <img src="{{ home.logo.url }}" alt="Logo img"
+                            class="h-20 md:h-30 lg:h-40 w-auto object-contain -ml-8 sm:ml-0">
+                    </a>
+                    {% endif %}
+
+                    <button
+                        class="lg:hidden w-10 h-10 flex items-center justify-center border text-color1 border-color1 rounded-md"
+                        @click="navbarOpen = !navbarOpen">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+
+                {% include 'includes/mobile-nav.html' %}
+                {% include 'includes/main-nav.html' %}
+            </nav>
+        </div>
+    </div>
+
+
+    {% block content %}
+
+    {% endblock %}
+
+    <!-- footer -->
+
+    <footer class="bg-custom-color2 pt-10 mt-6 md:pt-16 z-50">
+        <div class="container max-w-screen-xl mx-auto px-4">
+
+            <div class="flex flex-col lg:flex-row justify-between">
+                <div class="text-center lg:text-left mb-10 lg:mb-0">
+                    <div class="flex justify-center lg:justify-start mb-5">
+                        <a href="{% url 'index' %}">
+                            {% if home.logo %}
+                            <img src="{{ home.logo.url }}" alt="Logo img"
+                                class="h-40 md:h-30 lg:h-40 w-auto object-contain">
+                            {% endif %}
+                        </a>
+                    </div>
+
+                    <!-- <p class="font-light text-color3 text-xl mb-10 lg:ps-8">Yarn Digital</p> -->
+
+                    <div class="flex items-center justify-center space-x-5">
+                        <a href="https://www.facebook.com/" target="_blank"
+                            class="px-3 py-3 text-color3 rounded-full hover:bg-custom-color2 hover:text-white transition ease-in-out duration-500">
+                            <i class="fab fa-facebook-f fa-xl"></i>
+                        </a>
+
+                        <a href="https://www.instagram.com/" target="_blank"
+                            class="px-3 py-3 text-color3 rounded-full hover:bg-custom-color2 hover:text-white transition ease-in-out duration-500">
+                            <i class="fab fa-instagram fa-xl"></i>
+                        </a>
+
+                        <a href="mailto:"
+                            class="px-3 py-3 text-color3 rounded-full hover:bg-custom-color2 hover:text-white transition ease-in-out duration-500">
+                            <i class="fa-regular fa-envelope fa-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="text-center lg:text-left mb-10 lg:mb-0">
+                    <h4 class="font-semibold text-color3 text-2xl mb-6">Sitemap</h4>
+
+                    <a href="{% url 'index' %}"
+                        class="block font-light text-color3 text-xl mb-6 hover:text-color1 transition ease-in-out duration-300">Home</a>
+
+                    <a href="{% url 'about' %}"
+                        class="block font-light text-color3 text-xl mb-6 hover:text-color1 transition ease-in-out duration-300">About
+                        Us</a>
+
+                    <a href="{% url 'services' %}"
+                        class="block font-light text-color3 text-xl mb-6 hover:text-color1 transition ease-in-out duration-300">Services</a>
+
+                    <a href="{% url 'contact' %}"
+                        class="block font-light text-color3 text-xl mb-6 hover:text-color1 transition ease-in-out duration-300">Contact
+                        Us</a>
+
+                    <!-- <a href="{% url 'menu' %}"
+                        class="block font-light text-color3 text-xl mb-6 hover:text-color1 transition ease-in-out duration-300">Menu</a> -->
+                </div>
+
+                <div class="text-center lg:text-left mb-10 lg:mb-0">
+                    <h4 class="font-semibold text-color3 text-2xl mb-6">Stonebridge Farm</h4>
+                    <a href="#"
+                        class="block font-light text-color3 text-xl mb-6 hover:text-color1 transition ease-in-out duration-300">
+                        Raffery
+                    </a>
+                    <a href="#" id="open-cookie-settings" onclick="showCookieSettings(); return false;"
+                        class="block font-light text-color3 text-xl mb-6 hover:text-color1 transition ease-in-out duration-300 hover:underline">Cookie
+                        Settings</a>
+                    <a href="{% url 'policy_view' 'cookie' %}"
+                        class="block font-light text-color3 text-xl mb-6 hover:text-color1 transition ease-in-out duration-300 hover:underline">Cookie
+                        Policy</a>
+                    <a href="{% url 'policy_view' 'privacy' %}"
+                        class="block font-light text-color3 text-xl mb-6 hover:text-color1 transition ease-in-out duration-300 hover:underline">Privacy
+                        Policy</a>
+
+
+                </div>
+
+                <div class="text-center lg:text-left">
+                    <h4 class="font-semibold text-color3 text-2xl mb-6">Contact</h4>
+
+                    <a href="mailto:"
+                        class="block font-light text-color3 text-xl mb-6 hover:text-color1 transition ease-in-out duration-300">email address</a>
+
+                    <a
+                        class="block font-light text-color3 text-xl mb-6 hover:text-color1 transition ease-in-out duration-300">Mobile Number</a>
+                    <div class="container mx-auto py-4">
+                        <!-- Other footer content -->
+                    </div>
+
+                </div>
+            </div>
+            <div class="lg:text-left font2">
+                {% if not user.is_authenticated %}
+                <a href="{% url 'login' %}" class="text-color3 text-md mb-6 hover:text-color1">Login</a>
+                {% else %}
+                <a href="{% url 'dashboard_home' %}" class="text-color3 text-md mb-6 hover:text-color1">Dashboard</a>
+                <form method="post" action="{% url 'logout' %}" class="inline">
+                    {% csrf_token %}
+                    <button type="submit" class="text-color3 text-md mb-6 hover:text-color1">Logout</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+        <!-- container.// -->
+
+    </footer>
+
+    <!-- footer //end -->
+
+
+    {% block postloadjs %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    {% endblock %}
+
+    {% include 'cookie_consent/cookie_banner.html' %}
+    <script>
+        document.getElementById('open-cookie-settings').addEventListener('click', function (e) {
+            e.preventDefault();
+            showCookieSettings(); // Make sure this function is defined in your cookie_consent.js
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"
+        integrity="sha512-f8mwTB+Bs8a5c46DEm7HQLcJuHMBaH/UFlcgyetMqqkvTcYg4g5VXsYR71b3qC82lZytjNYvBj2pf0VekA9/FQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"
+        integrity="sha512-A64Nik4Ql7/W/PJk2RNOmVyC/Chobn5TY08CiKEX50Sdw+33WTOpPJ/63bfWPl0hxiRv1trPs5prKO8CpA7VNQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+</body>
+
+</html>

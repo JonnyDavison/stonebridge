@@ -1,0 +1,27 @@
+image:
+  file: .gitpod.dockerfile
+
+tasks:
+  - init: |
+      . ${GITPOD_REPO_ROOT}/.vscode/init_tasks.sh
+      sudo add-apt-repository ppa:deadsnakes/ppa -y
+      sudo apt-get update
+      sudo apt-get install -y python3.12 python3.12-venv python3.12-dev
+      sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1
+      sudo update-alternatives --set python3 /usr/bin/python3.12
+      python3 -m ensurepip
+      python3 -m pip install --upgrade pip
+  - command: |
+      /home/gitpod/.pg_ctl/bin/pg_start > /dev/null
+      . ${GITPOD_REPO_ROOT}/.vscode/uptime.sh &
+
+vscode:
+  extensions:
+    - ms-python.python
+    - formulahendry.auto-close-tag
+    - eventyret.bootstrap-4-cdn-snippet
+    - hookyqr.beautify
+    - matt-rudge.auto-open-preview-panel
+    - ms-toolsai.jupyter
+    - ms-toolsai.jupyter-keymap
+    - ms-toolsai.jupyter-renderers

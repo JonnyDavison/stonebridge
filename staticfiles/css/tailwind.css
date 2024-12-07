@@ -1,0 +1,29 @@
+@import url('https://fonts.cdnfonts.com/css/kiona-2');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    font-family: 'Kiona', sans-serif !important;
+  }
+}
+
+@layer components {
+  .container {
+    @apply w-full;
+  }
+  @screen sm { .container { @apply max-w-[640px]; } }
+  @screen md { .container { @apply max-w-[768px]; } }
+  @screen lg { 
+    .container { @apply max-w-[1024px]; }
+    .menu-container { @apply max-w-[70vh] !important pt-[99%] !important; }
+  }
+  @screen xl { .container { @apply max-w-[1280px]; } }
+  @screen 2xl { .container { @apply max-w-[1536px]; } }
+}
+
+.bg-none {
+  background-image: none;
+}

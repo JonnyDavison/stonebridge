@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="bg-custom-color2 min-h-screen">
+    <header class="">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-color3">{{ service.name }}</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            <div class="bg-custom-color3 rounded-lg overflow-hidden shadow-sm">
+                <div class="p-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                        <!-- Image Container -->
+                        <div class="flex justify-center items-center mb-6 lg:mb-0 order-1 lg:order-2">
+                            <div class="aspect-square w-full max-w-[300px] lg:max-w-[250px]">
+                                {% if service.image %}
+                                <img class="w-full h-full object-cover rounded-lg border-color1" src="{{ service.image.url }}" alt="{{ service.name }}">
+                                {% else %}
+                                <div class="w-full h-full bg-gray-200 rounded-lg"></div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Text Content Container -->
+                        <div class="flex flex-col justify-center order-2 lg:order-1">
+                            <h2 class="text-2xl font-bold text-color4 mb-4">{{ service.sub_title }}</h2>
+                            <div class="prose font2 text-color4 max-w-none mb-6">
+                                {{ service.description|safe }}
+                            </div>
+                            {% if service.price %}
+                            <p class="text-lg font-semibold text-color4 mb-6">Prices from: £{{ service.price }} /Month</p>
+                            {% else %}
+                            <p class="text-lg font-semibold text-color4 mb-6">POA</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if user.is_superuser %}
+        <div class="mt-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <a href="{% url 'service_update' service.pk %}"
+                class="bg-custom-color1 hover:bg-custom-color2 hover:text-color1 text-color2 font-bold py-2 px-4 rounded mr-2">
+                Edit Service
+            </a>
+            <a href="{% url 'service_delete' service.pk %}"
+                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                Delete Service
+            </a>
+        </div>
+        {% endif %}
+    </main>
+</div>
+{% endblock %}

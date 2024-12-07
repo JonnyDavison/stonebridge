@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<!-- Header -->
+<header class="bg-custom-color2">
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+
+        <h1 class="text-3xl font-bold text-color3">Contact Us</h1>
+    </div>
+</header>
+
+<div class="bg-custom-color2 py-10 md:py-16 mb-4">
+    <div class="container max-w-screen-xl mx-auto px-4">
+        <div
+            class="bg-custom-color1 flex flex-col lg:flex-row items-center justify-between py-12 px-8 lg:p-14 rounded-lg overflow-hidden relative">
+            <div class="text-center lg:text-left lg:w-1/2 mb-10 lg:mb-0 z-10">
+                <h2 class="font-semibold text-color2 text-3xl  max-w-md mx-auto lg:mx-0">
+                    Lets Discuss Your Digital Presence
+                </h2>
+                <br>
+                <p class="font-normal text-color2 text-md md:text-xl max-w-md mx-auto lg:mx-0 pb-3">
+
+                    <br>
+                    Fill in the form or contact directly us directly on
+                </p>
+
+                <!-- Contact Information -->
+                <div class="mt-8 space-y-4 items-center text-color2">
+                    <div class="flex font2 justify-center items-center">
+                        <i class="fas fa-phone-alt w-6 h-6 mr-3"></i>
+                        <span>07522735557</span>
+                    </div>
+                    <div class="flex font2 justify-center items-center">
+                        <i class="fas  fa-envelope w-6 h-6 mr-3"></i>
+                        <span>
+                            <a href="mailto:hello@yarndigital.co.uk" class="hover:underline">hello@yarndigital.co.uk</a>
+                        </span>
+                    </div>
+                    <div class="flex font2 justify-center items-center">
+                        <i class="fas fa-map-marker-alt w-6 h-6 mr-3"></i>
+                        <span>Yarn Digital, Belfast</span>
+                    </div>
+                </div>
+
+                <!-- Social Media Links -->
+                <div class="mt-8">
+                    <h3 class="text-xl font-semibold mb-4 text-color2">Follow Us</h3>
+                    <div class="flex justify-center space-x-4">
+                        <a href="https://www.facebook.com/profile.php?id=61567271823472" target="_blank"
+                            class="text-color2 hover:text-gray-300">
+                            <i class="fab fa-facebook-f w-6 h-6"></i>
+                        </a>
+                        <a href="https://www.instagram.com/yarn_digital/" target="_blank"
+                            class="text-color2 hover:text-gray-300">
+                            <i class="fab fa-instagram w-6 h-6"></i>
+                        </a>
+                        <a href="mailto:hello@yarndigital.co.uk" class="text-color2 hover:text-gray-300">
+                            <i class="fa-regular fa-envelope w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden lg:block absolute right-0 top-0 h-full w-1/2 z-0">
+                <img src="{{ MEDIA_URL }}book.png" alt="Image" class="object-cover h-full w-full">
+            </div>
+
+            <div id="contact" class="bg-custom-color2 bg-opacity-90 py-8 px-6 rounded-lg shadow-lg lg:w-5/12 z-10">
+                <h2 class="text-3xl font-semibold text-center mb-6 text-color1">Send Us a Message</h2>
+
+                {% if form_submitted %}
+                <p class="text-color1 text-center mb-4">Thank you for your message. We'll get back to you soon!</p>
+                {% endif %}
+
+                <div class="max-w-lg mx-auto pointer-events-auto">
+                    <form class="space-y-4" method="post">
+                        {% csrf_token %}
+                        <div id="div_id_name"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50">
+                            <label for="id_name" class="block text-sm font-medium text-color3">
+                                Name<span class="asteriskField">*</span>
+                            </label>
+                            <input type="text" name="name" maxlength="100"
+                                class="textinput bg-white font2 rounded-lg text-gray-700 border-gray-300 appearance-none px-4 py-2 w-full block focus:outline-none leading-normal border z-20"
+                                required="" id="id_name">
+                        </div>
+                        <div id="div_id_email"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50">
+                            <label for="id_email" class="block text-sm font-medium text-color3">
+                                Email<span class="asteriskField">*</span>
+                            </label>
+                            <input type="email" name="email" maxlength="254"
+                                class="emailinput bg-white font2 rounded-lg text-gray-700 border-gray-300 appearance-none px-4 py-2 w-full block focus:outline-none leading-normal border z-20"
+                                required="" id="id_email">
+                        </div>
+                        <div id="div_id_subject"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50">
+                            <label for="id_subject" class="block text-sm font-medium text-color3">
+                                Subject<span class="asteriskField">*</span>
+                            </label>
+                            <input type="text" name="subject" maxlength="200"
+                                class="textinput bg-white font2 rounded-lg text-gray-700 border-gray-300 appearance-none px-4 py-2 w-full block focus:outline-none leading-normal border z-20"
+                                required="" id="id_subject">
+                        </div>
+                        <div id="div_id_message"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50">
+                            <label for="id_message" class="block text-sm font-medium text-color3">
+                                Message<span class="asteriskField">*</span>
+                            </label>
+                            <textarea name="message" cols="40" rows="10"
+                                class="textarea bg-white font2 rounded-lg text-gray-700 border-gray-300 appearance-none px-4 py-2 w-full block focus:outline-none leading-normal border z-20"
+                                required="" id="id_message"></textarea>
+                        </div>
+                        <input type="submit" name="submit" value="Send Message"
+                            class="btn w-full bg-custom-color1 hover:bg-custom-color2 hover:text-color1 text-color2 font-bold py-2 px-4 rounded-md transition duration-300"
+                            id="submit-id-submit">
+                    </form>
+                </div>
+                </d>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
