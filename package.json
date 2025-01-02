@@ -1,26 +1,32 @@
 {
-  "name": "yarn",
+  "name": "stonebridge",
   "version": "1.0.0",
-  "description": "![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)",
-  "main": "postcss.config.js",
+  "description": "Stonebridge Farm website project",
+  "main": "index.js",
   "scripts": {
-    "build-css": "tailwindcss -i ./static/css/tailwind.css -o ./static/css/styles.css --minify"
+    "build": "tailwindcss -i ./static/css/tailwind.css -o ./static/css/styles.css --minify"
   },
   "dependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.13"
+    "postcss": "^8.4.47"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JonnyDavison/yarn.git"
+    "url": "git+https://github.com/JonnyDavison/stonebridge.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "farm",
+    "stonebridge",
+    "website"
+  ],
+  "author": "Jonny Davison",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JonnyDavison/yarn/issues"
+    "url": "https://github.com/JonnyDavison/stonebridge/issues"
   },
-  "homepage": "https://github.com/JonnyDavison/yarn#readme"
+  "homepage": "https://github.com/JonnyDavison/stonebridge#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
 }

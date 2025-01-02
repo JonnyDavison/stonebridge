@@ -85,9 +85,9 @@
                 <div class="flex items-center justify-between lg:justify-start w-full lg:w-auto">
                     {% if home.logo %}
                     <a href="{% url 'index' %}" class="mr-auto lg:mr-0">
-                        <img src="{{ home.logo.url }}" alt="Logo img"
-                            class="h-20 md:h-30 lg:h-40 w-auto object-contain -ml-8 sm:ml-0">
-                    </a>
+                        <img src="{{ home.logo.url }}" alt="{{ home.business_name }} Logo"
+                        class="h-40 !w-auto object-contain -ml-4 sm:ml-0">
+                    </a>              
                     {% endif %}
 
                     <button

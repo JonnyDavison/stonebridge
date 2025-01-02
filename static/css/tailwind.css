@@ -5,9 +5,7 @@
 @tailwind utilities;
 
 @layer base {
-  html, body {
-    font-family: 'Kiona', sans-serif !important;
-  }
+ 
 }
 
 @layer components {
@@ -18,7 +16,7 @@
   @screen md { .container { @apply max-w-[768px]; } }
   @screen lg { 
     .container { @apply max-w-[1024px]; }
-    .menu-container { @apply max-w-[70vh] !important pt-[99%] !important; }
+    .menu-container { @apply max-w-[70vh] pt-[99%]; }
   }
   @screen xl { .container { @apply max-w-[1280px]; } }
   @screen 2xl { .container { @apply max-w-[1536px]; } }
