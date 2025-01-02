@@ -7,53 +7,54 @@
 
 /* Color Pallet */
 /* Color Theme Swatches in Hex */
-.TechCorp-1-hex { color: #303030; }
-.TechCorp-2-hex { color: #181818; }
-.TechCorp-3-hex { color: #F0C000; }
-.TechCorp-4-hex { color: #F0D800; }
-.TechCorp-5-hex { color: #FFFFFF; }
+.TechCorp-1-hex { color: #202426; }
+.TechCorp-2-hex { color: #8C8C88; }
+.TechCorp-3-hex { color: #6C733D; }
+.TechCorp-4-hex { color: #9DA65D; }
+.TechCorp-5-hex { color: #F2F2F2; }
 
 .bg-custom-color1 {
-  background-color: #F0C000 !important;
+  background-color: #6C733D !important;
 }
 
 .bg-custom-color2 {
-  background-color: #303030 !important;
+  background-color: #F2F2F2 !important;
 }
 
 .bg-custom-color3 {
-  background-color: #ffffff !important;
+  background-color: #202426 !important;
 }
 
 .bg-custom-color4 {
-  background-color: #181818 !important;
+  background-color: #8C8C88 !important;
 }
+
 .bg-custom-color5 {
-  background-color: #F0D800 !important;
+  background-color: #9DA65D !important;
 }
 
 .text-color1 {
-  color: #F0C000 !important;
+  color: #6C733D !important;
 }
 
 .text-color2 {
-  color: #303030 !important;
+  color: #F2F2F2 !important;
 }
 
 .text-color3 {
-  color: #ffffff !important;
+  color: #202426 !important;
 }
 
 .text-color4 {
-  color: #181818 !important;
+  color: #8C8C88 !important;
 }
 
 .text-color5 {
-  color: #F0D800 !important;
+  color: #9DA65D !important;
 }
 
 .border-color1 {
-  border: 1px solid #303030;
+  border: 1px solid #202426;
 }
 
 *,
@@ -64,7 +65,7 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #303030;
+  background-color: #F2F2F2;
 }
 
 html,
@@ -73,7 +74,7 @@ body {
   font-optical-sizing: auto;
   font-weight: 800;
   font-style: normal;
-  background-color: #303030;
+  background-color: #F2F2F2;
 }
 
 .font2 {
@@ -124,7 +125,7 @@ a {
 }
 
 .menu > li:hover > a {
-  color: #F0C000;
+  color: #6C733D;
 }
 
 .menu > li:hover > a::before {
@@ -150,7 +151,7 @@ a {
   height: 3px;
   bottom: 3px;
   left: 0px;
-  background-color: #F0C000;
+  background-color: #6C733D;
   transition: all 0.2s ease-in-out;
   transform: scaleX(0);
   visibility: hidden;
@@ -175,7 +176,7 @@ a {
     justify-content: center;
     align-items: stretch;
     width: 100%;
-    background-color: #F0C000;
+    background-color: #6C733D;
     height: 0;
     line-height: 40px;
     box-sizing: border-box;

@@ -21,6 +21,10 @@ class Home(models.Model):
     keywords = models.TextField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     google_site_verification = models.TextField(null=True, blank=True)
+    business_name = models.TextField(null=True, blank=True)
+    phone_number = models.TextField(null=True, blank=True)
+    email = models.TextField(null=True, blank=True)
+    address = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.main_title

@@ -69,16 +69,42 @@
                         Keywords
                     </label>
                     {{ form.keywords }}
-                </div><div class="mb-4">
+                </div>
+                <div class="mb-4">
                     <label for="{{ form.description.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
                         Description
                     </label>
                     {{ form.description }}
-                </div><div class="mb-4">
+                </div>
+                <div class="mb-4">
                     <label for="{{ form.google_site_verification.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
                         Google Site Verification
                     </label>
                     {{ form.google_site_verification }}
+                </div>
+                <div class="mb-4">
+                    <label for="{{ form.google_site_verification.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
+                        Business Name
+                    </label>
+                    {{ form.business_name }}
+                </div>
+                <div class="mb-4">
+                    <label for="{{ form.google_site_verification.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
+                        Phone Number
+                    </label>
+                    {{ form.phone_number }}
+                </div>
+                <div class="mb-4">
+                    <label for="{{ form.google_site_verification.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
+                        Email Address
+                    </label>
+                    {{ form.email }}
+                </div>
+                <div class="mb-4">
+                    <label for="{{ form.google_site_verification.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
+                        Address
+                    </label>
+                    {{ form.address }}
                 </div>
                 <div class="mb-4">
                     {{ form.is_active|as_crispy_field }}
