@@ -16,31 +16,32 @@
         <div
             class="bg-custom-color1 flex flex-col lg:flex-row items-center justify-between py-12 px-8 lg:p-14 rounded-lg overflow-hidden relative">
             <div class="text-center lg:text-left lg:w-1/2 mb-10 lg:mb-0 z-10">
-                <h2 class="font-semibold text-color2 text-3xl  max-w-md mx-auto lg:mx-0">
-                    Lets Discuss Your Digital Presence
+                <h2 class="font-semibold text-color2 text-4xl  max-w-md mx-auto lg:mx-0">
+                    Got a question? Send us a message!
                 </h2>
                 <br>
                 <p class="font-normal text-color2 text-md md:text-xl max-w-md mx-auto lg:mx-0 pb-3">
 
                     <br>
-                    Fill in the form or contact directly us directly on
+                    Fill in the form or contact us directly
                 </p>
 
                 <!-- Contact Information -->
                 <div class="mt-8 space-y-4 items-center text-color2">
-                    <div class="flex font2 justify-center items-center">
+                    <div class="flex font2 text-lg justify-center items-center">
                         <i class="fas fa-phone-alt w-6 h-6 mr-3"></i>
-                        <span>07522735557</span>
+                        <span>{{ home.phone_number }}</span>
                     </div>
-                    <div class="flex font2 justify-center items-center">
-                        <i class="fas  fa-envelope w-6 h-6 mr-3"></i>
+                    <div class="flex font2 text-lg justify-center items-center">
+                        <i class="fas fa-envelope w-6 h-6 mr-3"></i>
                         <span>
-                            <a href="mailto:hello@yarndigital.co.uk" class="hover:underline">hello@yarndigital.co.uk</a>
+                            <a href="mailto:{{ home.email }}"
+                                class="hover:underline">{{ home.email }}</a>
                         </span>
                     </div>
-                    <div class="flex font2 justify-center items-center">
+                    <div class="flex font2 text-lg justify-center items-center">
                         <i class="fas fa-map-marker-alt w-6 h-6 mr-3"></i>
-                        <span>Yarn Digital, Belfast</span>
+                        <span>{{ home.address}}</span>
                     </div>
                 </div>
 
@@ -48,15 +49,15 @@
                 <div class="mt-8">
                     <h3 class="text-xl font-semibold mb-4 text-color2">Follow Us</h3>
                     <div class="flex justify-center space-x-4">
-                        <a href="https://www.facebook.com/profile.php?id=61567271823472" target="_blank"
+                        <a href="{{ home.facebook }}" target="_blank"
                             class="text-color2 hover:text-gray-300">
                             <i class="fab fa-facebook-f w-6 h-6"></i>
                         </a>
-                        <a href="https://www.instagram.com/yarn_digital/" target="_blank"
+                        <a href="{{ home.instagram }}" target="_blank"
                             class="text-color2 hover:text-gray-300">
                             <i class="fab fa-instagram w-6 h-6"></i>
                         </a>
-                        <a href="mailto:hello@yarndigital.co.uk" class="text-color2 hover:text-gray-300">
+                        <a href="mailto:{{ home.email}}" class="text-color2 hover:text-gray-300">
                             <i class="fa-regular fa-envelope w-6 h-6"></i>
                         </a>
                     </div>
@@ -71,7 +72,8 @@
                 <h2 class="text-3xl font-semibold text-center mb-6 text-color1">Send Us a Message</h2>
 
                 {% if form_submitted %}
-                <p class="text-color1 text-center mb-4">Thank you for your message. We'll get back to you soon!</p>
+                <p class="text-color1 text-center mb-4">Thank you for your message. We'll get back to you soon!
+                </p>
                 {% endif %}
 
                 <div class="max-w-lg mx-auto pointer-events-auto">
@@ -118,7 +120,6 @@
                             id="submit-id-submit">
                     </form>
                 </div>
-                </d>
             </div>
         </div>
     </div>

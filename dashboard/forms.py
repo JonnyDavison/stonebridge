@@ -7,7 +7,9 @@ from index.models import Home, Feature, FeatureItem, Gallery, Review, Service, A
 class HomeForm(forms.ModelForm):
     class Meta:
         model = Home
-        fields = ['logo', 'main_title', 'sub_title', 'call_to_action', 'intro', 'intro_title', 'hero_image', 'is_active', 'keywords', 'description', 'google_site_verification', 'business_name', 'phone_number', 'email', 'address']
+        fields = ['logo', 'main_title', 'sub_title', 'call_to_action', 'intro', 'intro_title',
+                  'hero_image', 'is_active', 'keywords', 'description', 'google_site_verification',
+                  'business_name', 'phone_number', 'email', 'address', 'facebook', 'instagram']
         widgets = {
             'main_title': SummernoteWidget(attrs={
                 'summernote': {

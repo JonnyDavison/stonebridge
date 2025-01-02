@@ -25,6 +25,8 @@ class Home(models.Model):
     phone_number = models.TextField(null=True, blank=True)
     email = models.TextField(null=True, blank=True)
     address = models.TextField(null=True, blank=True)
+    facebook = models.TextField(null=True, blank=True)
+    instagram = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.main_title

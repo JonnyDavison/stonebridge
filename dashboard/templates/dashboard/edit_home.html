@@ -107,6 +107,18 @@
                     {{ form.address }}
                 </div>
                 <div class="mb-4">
+                    <label for="{{ form.google_site_verification.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
+                        Instagram Link
+                    </label>
+                    {{ form.instagram }}
+                </div>
+                <div class="mb-4">
+                    <label for="{{ form.google_site_verification.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
+                        Facebook Link
+                    </label>
+                    {{ form.facebook }}
+                </div>
+                <div class="mb-4">
                     {{ form.is_active|as_crispy_field }}
                 </div>
                 <div class="flex items-center justify-between">
