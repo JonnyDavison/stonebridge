@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'index',
     'dashboard',
     'profiles',
+    'products',
     'cookie_consent',
  
 ]

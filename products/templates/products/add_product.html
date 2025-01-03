@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bag_tools %}
+{% load crispy_forms_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container max-w-screen-xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-semibold text-color1 mb-6">Product Admin - Add</h1>
+
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <form action="{% url 'add_product' %}" method="POST" class="space-y-4" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    {% if field.name != 'image' %}
+                        {{ field | as_crispy_field }}
+                    {% else %}
+                        <div>
+                            <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.value %}
+                                <p class="mt-2 text-sm text-gray-500">Current Image:</p>
+                                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="mt-1 w-full h-auto rounded-lg shadow-sm">
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <div class="flex justify-end space-x-2">
+                <a href="{% url 'products' %}" class="btn shop-now-button bg-gray-300 text-gray-700 hover:bg-gray-400 transition duration-300 px-4 py-2 rounded">
+                    <i class="fa-solid fa-xmark"></i> Cancel
+                </a>
+                <button class="btn shop-now-button bg-custom-color1 text-white hover:bg-custom-color2 transition duration-300 px-4 py-2 rounded" type="submit">
+                    <i class="fa-solid fa-plus"></i> Add
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+        $('#new-image').change(function() {
+            var file = $('#new-image')[0].files[0];
+            $('#filename').text(`Image will be set to: ${file.name}`);
+        });
+    </script>
+{% endblock %}

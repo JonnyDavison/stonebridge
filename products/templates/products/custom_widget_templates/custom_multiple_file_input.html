@@ -1,0 +1,35 @@
+{% if widget.is_initial %}
+    <p class="text-gray-700">{{ widget.initial_text }}:</p>
+    <div class="flex flex-wrap">
+        {% for img in widget.value %}
+        <div class="image-preview-container inline-block mr-2 mb-2">
+            <a href="{{ img.url }}" class="block">
+                <img width="96" height="96" class="rounded shadow-sm" src="{{ img.url }}" alt="Image preview">
+            </a>
+            {% if not widget.required %}
+                <div class="flex items-center mt-2">
+                    <input class="form-checkbox h-4 w-4 text-custom-color1 border-gray-300 rounded" type="checkbox" name="{{ widget.checkbox_name }}_{{ forloop.counter0 }}" id="{{ widget.checkbox_id }}_{{ forloop.counter0 }}">
+                    <label class="ml-2 text-gray-700" for="{{ widget.checkbox_id }}_{{ forloop.counter0 }}">{{ widget.clear_checkbox_label }}</label>
+                </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    <br>
+{% endif %}
+<span class="btn shop-now-button mt-2 inline-flex items-center">
+    {{ widget.input_text }} 
+    <input id="new-images" type="{{ widget.type }}" name="{{ widget.name }}" multiple{% include "django/forms/widgets/attrs.html" %} class="ml-2">
+</span>
+<strong><p class="text-red-600" id="filenames"></p></strong>
+
+<script>
+    $('#new-images').change(function() {
+        var files = $(this)[0].files;
+        var fileNames = [];
+        for (var i = 0; i < files.length; i++) {
+            fileNames.push(files[i].name);
+        }
+        $('#filenames').text(fileNames.join(', '));
+    });
+</script>

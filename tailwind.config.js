@@ -24,7 +24,7 @@ module.exports = {
 
       },
       fontFamily: {
-        'body': ['Syne', 'sans-serif'],
+        'body': ['Khand', 'serif'],
       },
     },
   },

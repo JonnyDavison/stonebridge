@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container max-w-screen-xl mx-auto px-4 py-8">
+    <div class="flex flex-col lg:flex-row">
+        <div class="lg:w-1/2">
+            <div class="relative">
+                {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-auto rounded-lg shadow-lg">
+                {% else %}
+                <img src="{{ MEDIA_URL }}default-img.webp" alt="No image available" class="w-full h-auto rounded-lg shadow-lg">
+                {% endif %}
+            </div>
+            <div class="mt-4 flex justify-between items-center">
+                <h1 class="text-3xl font-semibold text-color1">{{ product.name }}</h1>
+                <span class="text-lg font-bold text-color1">
+                    {% if product.offer_price %}
+                    <span class="line-through text-gray-500">£{{ product.price }}</span>
+                    £{{ product.offer_price }}
+                    {% else %}
+                    £{{ product.price }}
+                    {% endif %}
+                </span>
+            </div>
+            <div class="flex items-center mt-2">
+                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-{{ product.get_label_display }}-100 text-{{ product.get_label_display }}-800">
+                    {{ product.get_tag_display }}
+                </span>
+                <div class="ml-4 flex items-center">
+                    {% if product.rating %}
+                    <span class="flex items-center">
+                        {% for i in "12345" %}
+                        <i class="fas fa-star {% if forloop.counter <= product.rating %} text-yellow-400 {% else %}text-gray-300{% endif %}"></i>
+                        {% endfor %}
+                        ({{ product.rating }})
+                    </span>
+                    {% else %}
+                    <span>No ratings yet</span>
+                    {% endif %}
+                </div>
+            </div>
+            <p class="mt-4 text-gray-700">{{ product.description }}</p>
+
+            <!-- Add to Cart Button (if applicable) -->
+            <div class="mt-6">
+                <form method="post" action="{% url 'add_to_cart' product.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="px-5 py-3 bg-custom-color1 text-color2 font-semibold rounded hover:bg-custom-color2 transition duration-300">Add to Cart</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Recommended Products Section -->
+        <div class="lg:w-1/2 lg:pl-8 mt-6 lg:mt-0">
+            <h2 class="text-xl font-semibold text-color1 mb-4">Recommended Products</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {% for recommended_product in product.related_products.all %}
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <a href="{% url 'product_detail' recommended_product.id %}" class="block aspect-w-4 aspect-h-3">
+                        {% if recommended_product.image %}
+                        <img src="{{ recommended_product.image.url }}" alt="{{ recommended_product.name }}" class="w-full h-full object-cover">
+                        {% else %}
+                        <img src="{{ MEDIA_URL }}default-img.webp" alt="No image available" class="w-full h-full object-cover">
+                        {% endif %}
+                    </a>
+                    <div class="p-4">
+                        <a href="{% url 'product_detail' recommended_product.id %}" class="block mb-2 text-lg font-semibold text-color1">{{ recommended_product.name }}</a>
+                        <p class="text-sm text-gray-700 mb-2">{{ recommended_product.description|truncatewords:10 }}</p>
+                        <span class="text-lg font-bold text-color1">
+                            £{{ recommended_product.offer_price|default:recommended_product.price }}
+                        </span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Products Button -->
+    <div class="mt-8 text-center">
+        <a href="{% url 'products' %}" class="inline-block px-5 py-3 bg-custom-color1 text-color2 font-semibold rounded hover:bg-custom-color2 transition duration-300">Back to Products</a>
+    </div>
+</div>
+
+{% endblock %}

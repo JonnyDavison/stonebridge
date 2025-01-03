@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="w-full bg-custom-color2">
+    <div class="container max-w-screen-xl mx-auto px-4">
+        <h1 class="text-4xl font-semibold text-color3 py-8">All Products</h1>
+    </div>
+</div>
+
+<div class="container max-w-screen-xl mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {% for product in products %}
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="{% url 'product_detail' product.id %}" class="block aspect-w-4 aspect-h-3">
+                {% if product.image %}
+                <img src="{{ product.image.url }}" class="w-full h-full object-cover" alt="{{ product.name }}">
+                {% else %}
+                <img src="{{ MEDIA_URL }}default-img.webp" class="w-full h-full object-cover" alt="No image available">
+                {% endif %}
+            </a>
+            <div class="p-4">
+                <a href="{% url 'product_detail' product.id %}" class="block">
+                    <h2 class="text-xl font-semibold text-color1 mb-2">{{ product.name }}</h2>
+                </a>
+                <div class="flex justify-between items-center mb-2">
+                    <div>
+                        {% if product.offer_price %}
+                        <span class="text-sm line-through text-gray-500 mr-2">£{{ product.price }}</span>
+                        <span class="text-lg font-bold text-color1">£{{ product.offer_price }}</span>
+                        {% else %}
+                        <span class="text-lg font-bold text-color1">£{{ product.price }}</span>
+                        {% endif %}
+                    </div>
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-{{ product.get_label_display }}-100 text-{{ product.get_label_display }}-800">
+                        {{ product.get_tag_display }}
+                    </span>
+                </div>
+                <div class="text-sm text-gray-600 mb-2">
+                    {% if product.rating %}
+                    <span class="flex items-center">
+                        <i class="fas fa-star text-yellow-400 mr-1"></i>
+                        {{ product.rating }}
+                    </span>
+                    {% else %}
+                    <span>No ratings yet</span>
+                    {% endif %}
+                </div>
+                <p class="text-sm text-gray-700 mb-4">{{ product.description|truncatewords:20 }}</p>
+                {% if request.user.is_superuser %}
+                <div class="flex justify-end space-x-2">
+                    <a href="{% url 'edit_product' product.id %}" class="text-sm text-blue-600 hover:underline">Edit</a>
+                    <a href="{% url 'delete_product' product.id %}" class="text-sm text-red-600 hover:underline">Delete</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="fixed bottom-8 right-8">
+    <button id="back-to-top" class="bg-custom-color1 text-color2 rounded-full p-3 shadow-lg hover:bg-custom-color2 transition duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script>
+    document.getElementById('back-to-top').addEventListener('click', function() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+
+    window.addEventListener('scroll', function() {
+        var button = document.getElementById('back-to-top');
+        if (window.pageYOffset > 100) {
+            button.classList.remove('hidden');
+        } else {
+            button.classList.add('hidden');
+        }
+    });
+</script>
+{% endblock %}
