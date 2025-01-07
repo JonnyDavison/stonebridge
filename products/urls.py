@@ -5,6 +5,7 @@ urlpatterns = [
     # Product listing and detail views
     path('', views.all_products, name='products'),
     path('<int:product_id>/', views.product_detail, name='product_detail'),
+    path('categories/', views.all_categories, name='all_categories'),
     path('category/<slug:category_slug>/', views.category_products, name='category_products'),
 
     # Product management

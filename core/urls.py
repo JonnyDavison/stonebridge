@@ -20,10 +20,7 @@ urlpatterns = [
 
     # Other URLs
     path('cookies/', include('cookie_consent.urls')),
-    path(
-        'sitemap.xml',
-        TemplateView.as_view(template_name="sitemap.xml", content_type="text/xml")
-    ),
+    path('sitemap.xml', TemplateView.as_view(template_name="sitemap.xml", content_type="text/xml")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Error handlers

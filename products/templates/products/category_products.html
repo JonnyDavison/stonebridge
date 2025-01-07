@@ -1,0 +1,27 @@
+<!-- category_products.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container max-w-screen-xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-semibold text-color1 mb-6">{{ category.get_name }} Products</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {% for product in products %}
+        <div class="bg-white rounded-lg shadow-md p-4">
+            <a href="{% url 'product_detail' product.id %}" class="block">
+                {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="rounded w-full h-auto mb-2">
+            {% endif %}
+            <h2 class="text-lg font-semibold text-color1">{{ product.name }}</h2>
+                <p>£{{ product.price }}</p>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if not products %}
+        <p>No products available in this category.</p>
+    {% endif %}
+</div>
+{% endblock %}

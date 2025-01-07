@@ -33,8 +33,8 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('friendly_name', 'name')
-    search_fields = ('name', 'friendly_name')
+    list_display = ('slug', 'name')
+    search_fields = ('name', 'slug')
 
 @admin.register(ProductImage)
 class ProductImageAdmin(admin.ModelAdmin):

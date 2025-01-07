@@ -214,14 +214,25 @@ def delete_product_image(request, image_id):
    
     return redirect(reverse('product_detail', args=[product.id]))
 
+
+def all_categories(request):
+    """A view to return all categories"""
+    categories = Category.objects.all()
+    context = {
+        'categories': categories,
+    }
+    return render(request, 'products/categories.html', context)
+
+
 def category_products(request, category_slug):
-   """Display products for a specific category"""
-   category = get_object_or_404(Category, slug=category_slug)
-   products = Product.objects.filter(category=category)
+    """Display products for a specific category"""
+    category = get_object_or_404(Category, slug=category_slug)
+    products = Product.objects.filter(category=category)
 
-   context = {
-       'category': category,
-       'products': products,
-   }
+    context = {
+        'category': category,
+        'products': products,
+    }
 
-   return render(request, 'products/category_products.html', context)
+    return render(request, 'products/category_products.html', context)
+

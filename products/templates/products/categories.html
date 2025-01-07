@@ -1,0 +1,19 @@
+<!-- categories.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container max-w-screen-xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-semibold text-color1 mb-6">Product Categories</h1>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {% for category in categories %}
+        <div class="bg-white rounded-lg shadow-md p-4">
+            <a href="{% url 'category_products' category.slug %}" class="block text-lg font-semibold text-color1 hover:text-custom-color2">
+                {{ category.name }}
+            </a>            
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
