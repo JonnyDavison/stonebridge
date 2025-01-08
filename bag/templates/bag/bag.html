@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bag_tools %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-semibold text-color1 mb-6">Shopping Bag</h1>
+
+    {% if bag_items %}
+        <div class="overflow-x-auto">
+            <table class="w-full table-auto">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="px-4 py-2 text-left">#</th>
+                        <th class="px-4 py-2 text-left">Item</th>
+                        <th class="px-4 py-2 text-left">Price</th>
+                        <th class="px-4 py-2 text-left">Quantity</th>
+                        <th class="px-4 py-2 text-left">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in bag_items %}
+                        <tr>
+                            <td class="border px-4 py-2">{{ forloop.counter }}</td>
+                            <td class="border px-4 py-2">{{ item.product.name }}</td>
+                            <td class="border px-4 py-2">
+                                {% if item.product.offer_price %}
+                                    <span class="line-through text-gray-500">£{{ item.product.price }}</span>
+                                    <span class="text-color1">£{{ item.product.offer_price }}</span>
+                                {% else %}
+                                    <span>£{{ item.product.price }}</span>
+                                {% endif %}
+                            </td>
+                            <td class="border px-4 py-2">
+                                <form class="flex items-center" method="POST" action="{% url 'adjust_bag' item.item_id %}">
+                                    {% csrf_token %}
+                                    <button type="button" class="decrement-qty bg-gray-200 px-2 py-1 rounded-l">-</button>
+                                    <input class="w-12 text-center border-t border-b" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="99">
+                                    <button type="button" class="increment-qty bg-gray-200 px-2 py-1 rounded-r">+</button>
+                                    <button type="submit" class="ml-2 text-sm text-blue-600">Update</button>
+                                </form>
+                                <button class="remove-item text-sm text-red-600 mt-1" data-item_id="{{ item.item_id }}"><small>Remove</small></button>
+                            </td>
+                            <td class="border px-4 py-2">
+                                £{{ item.subtotal|floatformat:2 }}
+                                {% if item.saving > 0 %}
+                                    <span class="ml-2 text-sm text-green-600">Save £{{ item.saving|floatformat:2 }}</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-right font-bold">Order Total:</td>
+                        <td class="px-4 py-2 font-bold">£{{ total|floatformat:2 }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="text-right font-bold">Delivery:</td>
+                        <td class="px-4 py-2 font-bold">£{{ delivery|floatformat:2 }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="text-right font-bold">Grand Total:</td>
+                        <td class="px-4 py-2 font-bold">£{{ grand_total|floatformat:2 }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="mt-6 flex justify-between">
+            <a href="{% url 'products' %}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Continue Shopping</a>
+        </div>
+    {% else %}
+        <p class="text-lg">Your shopping bag is empty.</p>
+        <a href="{% url 'products' %}" class="inline-block mt-4 bg-custom-color1 text-white px-4 py-2 rounded hover:bg-custom-color2">Continue Shopping</a>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript">
+    // Quantity buttons
+    $('.increment-qty, .decrement-qty').click(function(e) {
+        e.preventDefault();
+        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+        var currentValue = parseInt($(closestInput).val());
+        if($(this).hasClass('increment-qty')) {
+            $(closestInput).val(currentValue + 1);
+        } else {
+            $(closestInput).val(currentValue - 1);
+        }
+    });
+
+    // Remove item and reload on click
+    $('.remove-item').click(function(e) {
+        var itemId = $(this).data('item_id');
+        var url = `/bag/remove/${itemId}/`;
+        var data = {'csrfmiddlewaretoken': '{{ csrf_token }}'};
+
+        $.post(url, data)
+         .done(function() {
+             location.reload();
+         });
+    });
+</script>
+{% endblock %}

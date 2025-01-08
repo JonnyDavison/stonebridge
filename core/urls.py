@@ -14,7 +14,7 @@ urlpatterns = [
     path('dashboard/', include('dashboard.urls')),  # Admin dashboard for users
     path('profiles/', include('profiles.urls')),  # User profiles
     path('products/', include('products.urls')),  # Products app (e-commerce)
-    # path('bag/', include('bag.urls')),  # Shopping bag/basket app
+    path('bag/', include('bag.urls')),  # Shopping bag/basket app
     # path('checkout/', include('checkout.urls')),  # Checkout/payment app
     # path('orders/', include('orders.urls')),  # Orders app
 
