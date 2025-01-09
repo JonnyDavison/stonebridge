@@ -1,10 +1,17 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
 from django.contrib import messages
 from products.models import Product
+from index.models import Home, Service, Gallery, Review, ContactSubmission, About, Feature, FeatureItem
+
 
 def bag(request):
-    """A view to return the shopping bag page"""
-    return render(request, 'bag/bag.html')
+    # Home data
+    home = Home.objects.filter(is_active=True).first()
+    context = {
+        'home': home
+    }
+    return render(request, 'bag/bag.html', context)
+
 
 def add_to_bag(request, item_id):
     """Add a quantity of the specified product to the shopping bag"""

@@ -6,6 +6,8 @@ from django.db.models.functions import Lower
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Product, Category, ProductImage
 from .forms import ProductForm, ProductImageForm
+from index.models import Home, Service, Gallery, Review, ContactSubmission, About, Feature, FeatureItem
+
 
 def all_products(request):
     """A view to return all Products page with sorting and search"""
@@ -14,7 +16,8 @@ def all_products(request):
     categories = None
     sort = None
     direction = None
-
+    home = Home.objects.filter(is_active=True).first()
+   
     if request.GET:
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
@@ -56,6 +59,7 @@ def all_products(request):
         products = paginator.page(paginator.num_pages)
 
     context = {
+        'home': home,
         'products': products,
         'search_term': query,
         'current_categories': categories,
@@ -66,6 +70,7 @@ def all_products(request):
 
 def product_detail(request, product_id):
     """A view to return Product detail page"""
+    home = Home.objects.filter(is_active=True).first()
     product = get_object_or_404(Product, pk=product_id)
     
     # Fetch related products based on the same category or other criteria
@@ -74,6 +79,7 @@ def product_detail(request, product_id):
     additional_images = product.images.all()  # Fetch additional images associated with the product
 
     context = {
+        'home': home,
         'product': product,
         'related_products': related_products,
         'additional_images': additional_images,
@@ -84,6 +90,7 @@ def product_detail(request, product_id):
 @login_required
 def add_product(request):
     """Add a product to the store"""
+    home = Home.objects.filter(is_active=True).first()
     if not request.user.is_superuser:
         messages.error(request, "Sorry, only store owners can do that.")
         return redirect(reverse('home'))
@@ -104,6 +111,7 @@ def add_product(request):
         
     template = 'products/add_product.html'
     context = {
+        'home': home,
         'form': form,
     }
 
@@ -112,6 +120,7 @@ def add_product(request):
 @login_required
 def edit_product(request, product_id):
     """Edit a product in the store"""
+    home = Home.objects.filter(is_active=True).first()
     if not request.user.is_superuser:
         messages.error(request, "Sorry, only store owners can do that.")
         return redirect(reverse('home'))
@@ -135,6 +144,7 @@ def edit_product(request, product_id):
 
     template = 'products/edit_product.html'
     context = {
+        'home': home,
         'form': form,
         'product': product,
     }
@@ -147,7 +157,8 @@ def delete_product(request, product_id):
     if not request.user.is_superuser:
         messages.error(request, "Sorry, only store owners can do that.")
         return redirect(reverse('home'))
-
+    
+    home = Home.objects.filter(is_active=True).first()
     product = get_object_or_404(Product, pk=product_id)
     
     # Delete associated images before deleting the product (optional)
@@ -167,6 +178,7 @@ def add_product_image(request, product_id):
         return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
+    home = Home.objects.filter(is_active=True).first()
     
     if request.method == 'POST':
         form = ProductImageForm(request.POST, request.FILES)
@@ -189,6 +201,7 @@ def add_product_image(request, product_id):
     template = 'products/add_product_image.html'
     
     context = {
+        'home': home,
         'form': form,
         'product': product,
     }
@@ -205,7 +218,7 @@ def delete_product_image(request, image_id):
         return redirect(reverse('home'))
 
     image = get_object_or_404(ProductImage, pk=image_id)
-   
+    
     product = image.product
    
     image.delete()
@@ -218,7 +231,9 @@ def delete_product_image(request, image_id):
 def all_categories(request):
     """A view to return all categories"""
     categories = Category.objects.all()
+    home = Home.objects.filter(is_active=True).first()
     context = {
+        'home': home,
         'categories': categories,
     }
     return render(request, 'products/categories.html', context)
@@ -228,8 +243,10 @@ def category_products(request, category_slug):
     """Display products for a specific category"""
     category = get_object_or_404(Category, slug=category_slug)
     products = Product.objects.filter(category=category)
-
+    home = Home.objects.filter(is_active=True).first()
+    
     context = {
+        'home': home,
         'category': category,
         'products': products,
     }
