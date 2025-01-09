@@ -7,7 +7,8 @@ urlpatterns = [
     path('edit-feature/', views.edit_feature, name='edit_feature'),
     path('galleries/', views.gallery_list, name='gallery_list'),
     path('edit-gallery/<int:gallery_id>/', views.edit_gallery, name='edit_gallery'),
-    
+    path('add_gallery/', views.add_gallery, name='add_gallery'),
+
     path('reviews/', views.review_list, name='review_list'),
     path('reviews/add/', views.add_review, name='add_review'),
     path('reviews/edit/<int:review_id>/', views.edit_review, name='edit_review'),

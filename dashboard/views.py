@@ -106,6 +106,30 @@ def gallery_list(request):
     }
     return render(request, 'dashboard/gallery_list.html', context)
 
+
+@login_required
+@user_passes_test(is_superuser)
+def add_gallery(request):
+    home = Home.objects.filter(is_active=True).first()
+    
+    if request.method == 'POST':
+        form = GalleryForm(request.POST, request.FILES)
+        if form.is_valid():
+            gallery = form.save()
+            messages.success(request, 'New gallery added successfully.')
+            return redirect('gallery_list')
+        else:
+            messages.error(request, 'There was an error adding the gallery. Please check the form.')
+    else:
+        form = GalleryForm()
+    
+    context = {
+        'home': home,
+        'form': form,
+    }
+    return render(request, 'dashboard/add_gallery.html', context)
+
+
 @login_required
 @user_passes_test(is_superuser)
 def edit_gallery(request, gallery_id):
