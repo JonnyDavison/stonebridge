@@ -30,7 +30,7 @@ DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-jonnydaviso-stonebridge-zcsuj5zhcx0.ws-eu117.gitpod.io', 'https://yarn-7377d976be88.herokuapp.com/']
+CSRF_TRUSTED_ORIGINS = ['https://8000-jonnydaviso-stonebridge-zcsuj5zhcx0.ws-eu117.gitpod.io', 'https://stonebridge-a5ce1bb6de59.herokuapp.com']
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # Application definition
